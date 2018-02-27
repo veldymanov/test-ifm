@@ -126,6 +126,14 @@ MIT
 MIT
 MIT
 
+@angular/router@5.2.6
+MIT
+MIT
+
+@angular/forms@5.2.6
+MIT
+MIT
+
 @angular/platform-browser-dynamic@5.2.6
 MIT
 MIT
