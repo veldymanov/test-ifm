@@ -3,25 +3,29 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: 20px auto;
+  max-width: 500px;
   width: 70vw;
 }
 
 .pieces-container {
   background: rgba(200, 200, 200, 0.5);
-  height: 40vw;
+  height: 250px;
   margin: 0 auto;
+  max-width: 450px;
   position: relative;
-  width: 70vw;
+  width: 61vw;
   .img-box {
     position: absolute;
   }
 }
 
 .img {
-  background: url(../assets/images/kotel.jpg) center / cover no-repeat;
-  margin: 0 auto;
-  width: 60vw;
+  background: url(../../assets/images/kotel.jpg) center / cover no-repeat;
   height: 60vw;
+  margin: 0 auto;
+  max-height: 450px;
+  max-width: 450px;
+  width: 60vw;
 }
 
 .img-box {
@@ -29,6 +33,8 @@
   border: 1px solid #fff;
   display: inline-block;
   height: 20vw;
+  max-height: 150px;
+  max-width: 150px;
   overflow: hidden;
   width: 20vw;
 }
@@ -41,40 +47,64 @@
 .piece-2 {
   .img {
     background-position: -20vw 0;
+    @media(min-width: 750px) {
+      background-position: -150px 0;
+    }
   }
 }
 .piece-3 {
   .img {
     background-position: -40vw 0;
+    @media(min-width: 750px) {
+      background-position: -300px 0;
+    }
   }
 }
 .piece-4 {
   .img {
     background-position: 0 -20vw;
+    @media(min-width: 750px) {
+      background-position: 0 -150px;
+    }
   }
 }
 .piece-5 {
   .img {
     background-position: -20vw -20vw;
+    @media(min-width: 750px) {
+      background-position: -150px -150px;
+    }
   }
 }
 .piece-6 {
   .img {
     background-position: -40vw -20vw;
+    @media(min-width: 750px) {
+      background-position: -300px -150px;
+    }
   }
 }
 .piece-7 {
   .img {
     background-position: 0 -40vw;
+    @media(min-width: 750px) {
+      background-position: 0 -300px;
+    }
   }
 }
 .piece-8 {
   .img {
     background-position: -20vw -40vw;
+    @media(min-width: 750px) {
+      background-position: -150px -300px;
+    }
   }
 }
 .piece-9 {
   .img {
     background-position: -40vw -40vw;
+    @media(min-width: 750px) {
+      background-position: -300px -300px;
+    }
   }
 }

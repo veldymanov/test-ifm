@@ -3,14 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { CutImageService } from './cut-image/cut-image.service';
 
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 
 @NgModule({
   imports: [
     CommonModule
   ],
-  declarations: [ ],
+  declarations: [
+    PageNotFoundComponent,
+   ],
   providers: [
     CutImageService
+  ],
+  exports: [
+    PageNotFoundComponent
   ]
 })
 export class CoreModule {
