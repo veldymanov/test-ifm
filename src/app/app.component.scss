@@ -1,0 +1,80 @@
+.puzzle {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px auto;
+  width: 70vw;
+}
+
+.pieces-container {
+  background: rgba(200, 200, 200, 0.5);
+  height: 40vw;
+  margin: 0 auto;
+  position: relative;
+  width: 70vw;
+  .img-box {
+    position: absolute;
+  }
+}
+
+.img {
+  background: url(../assets/images/kotel.jpg) center / cover no-repeat;
+  margin: 0 auto;
+  width: 60vw;
+  height: 60vw;
+}
+
+.img-box {
+  background-color: rgba(100, 100, 100, 1);
+  border: 1px solid #fff;
+  display: inline-block;
+  height: 20vw;
+  overflow: hidden;
+  width: 20vw;
+}
+
+.piece-1 {
+  .img {
+    background-position: 0 0;
+  }
+}
+.piece-2 {
+  .img {
+    background-position: -20vw 0;
+  }
+}
+.piece-3 {
+  .img {
+    background-position: -40vw 0;
+  }
+}
+.piece-4 {
+  .img {
+    background-position: 0 -20vw;
+  }
+}
+.piece-5 {
+  .img {
+    background-position: -20vw -20vw;
+  }
+}
+.piece-6 {
+  .img {
+    background-position: -40vw -20vw;
+  }
+}
+.piece-7 {
+  .img {
+    background-position: 0 -40vw;
+  }
+}
+.piece-8 {
+  .img {
+    background-position: -20vw -40vw;
+  }
+}
+.piece-9 {
+  .img {
+    background-position: -40vw -40vw;
+  }
+}
