@@ -67,7 +67,7 @@ export class PazzleComponent implements OnInit {
         this.elemBelowPieceN = this.elemBelow.dataset.piece;
         // hover
         this.unhoverAllDropTargets();
-        if (this.elemBelow.dataset.piece) {
+        if (this.elemBelow.classList.contains('js-drop-target')) {
           this.elemBelow.style.backgroundColor = 'rgba(100, 100, 100, 0.5)';
         }
       };
@@ -79,10 +79,8 @@ export class PazzleComponent implements OnInit {
       };
 
       dragableElem.onmouseup = (e) => {
-
         if (dragableElem.dataset.piece === this.elemBelowPieceN) {
           this.elemBelow.appendChild(dragableElem);
-          console.log('dragableElem.dataset.piece: ', dragableElem.dataset.piece);
         }
 
         this.elemBelow = undefined;
@@ -93,6 +91,7 @@ export class PazzleComponent implements OnInit {
 
       function move(e) {
         e.preventDefault();
+
         dragableElem.style.cssText = `
           left: ${e.pageX + deltaX0}px;
           top: ${e.pageY + deltaY0}px;
@@ -102,10 +101,11 @@ export class PazzleComponent implements OnInit {
 
       function cancelMove(e) {
         e.preventDefault();
+
         dragableElem.style.cssText = `
           left: ${left0}px;
           top: ${top0}px;
-          z-index: ${zIndex0};
+          z-index: zIndex0;
         `;
       }
 
@@ -118,7 +118,7 @@ export class PazzleComponent implements OnInit {
   }
 
   unhoverAllDropTargets() {
-      this.dropTargets.forEach(dropTarget => dropTarget.style.backgroundColor = 'rgba(100, 100, 100, 1)');
-    }
+    this.dropTargets.forEach(dropTarget => dropTarget.style.backgroundColor = 'rgba(100, 100, 100, 1)');
+  }
 
 }

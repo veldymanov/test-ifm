@@ -49,6 +49,9 @@
   max-width: 150px;
   overflow: hidden;
   position: absolute;
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;
   width: 20vw;
 }
 
