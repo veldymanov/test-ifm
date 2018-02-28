@@ -1,10 +1,25 @@
-.puzzle {
+.puzzle-field {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: 20px auto;
   max-width: 500px;
   width: 70vw;
+}
+
+.drop-target {
+  background-color: rgba(100, 100, 100, 1);
+  border: 1px solid #fff;
+  display: inline-block;
+  height: 20vw;
+  max-height: 150px;
+  max-width: 150px;
+  overflow: hidden;
+  width: 20vw;
+  .dragable-box {
+    border: none;
+    position: static;
+  }
 }
 
 .pieces-container {
@@ -14,9 +29,6 @@
   max-width: 450px;
   position: relative;
   width: 61vw;
-  .img-box {
-    position: absolute;
-  }
 }
 
 .img {
@@ -28,7 +40,7 @@
   width: 60vw;
 }
 
-.img-box {
+.dragable-box {
   background-color: rgba(100, 100, 100, 1);
   border: 1px solid #fff;
   display: inline-block;
@@ -36,15 +48,16 @@
   max-height: 150px;
   max-width: 150px;
   overflow: hidden;
+  position: absolute;
   width: 20vw;
 }
 
-.piece-1 {
+.dragable-box[data-piece="1"] {
   .img {
     background-position: 0 0;
   }
 }
-.piece-2 {
+.dragable-box[data-piece="2"] {
   .img {
     background-position: -20vw 0;
     @media(min-width: 750px) {
@@ -52,7 +65,7 @@
     }
   }
 }
-.piece-3 {
+.dragable-box[data-piece="3"] {
   .img {
     background-position: -40vw 0;
     @media(min-width: 750px) {
@@ -60,7 +73,7 @@
     }
   }
 }
-.piece-4 {
+.dragable-box[data-piece="4"] {
   .img {
     background-position: 0 -20vw;
     @media(min-width: 750px) {
@@ -68,7 +81,7 @@
     }
   }
 }
-.piece-5 {
+.dragable-box[data-piece="5"] {
   .img {
     background-position: -20vw -20vw;
     @media(min-width: 750px) {
@@ -76,7 +89,7 @@
     }
   }
 }
-.piece-6 {
+.dragable-box[data-piece="6"] {
   .img {
     background-position: -40vw -20vw;
     @media(min-width: 750px) {
@@ -84,7 +97,7 @@
     }
   }
 }
-.piece-7 {
+.dragable-box[data-piece="7"] {
   .img {
     background-position: 0 -40vw;
     @media(min-width: 750px) {
@@ -92,7 +105,7 @@
     }
   }
 }
-.piece-8 {
+.dragable-box[data-piece="8"] {
   .img {
     background-position: -20vw -40vw;
     @media(min-width: 750px) {
@@ -100,7 +113,7 @@
     }
   }
 }
-.piece-9 {
+.dragable-box[data-piece="9"] {
   .img {
     background-position: -40vw -40vw;
     @media(min-width: 750px) {
