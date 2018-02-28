@@ -15,7 +15,7 @@ const appRoutes: Routes = [
   imports: [
     PuzzleModule,
     RouterModule.forRoot(
-      appRoutes
+      appRoutes,
       {
         //  enableTracing: true, // <-- debugging purposes only
         preloadingStrategy: PreloadAllModules // SelectivePreloadingStrategy
