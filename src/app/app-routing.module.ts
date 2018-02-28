@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router, PreloadAllModules  } from '@angular/router';
 
+import { PuzzleModule } from './puzzle/puzzle.module';
+
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
-import { PazzleComponent } from './pazzle/pazzle.component';
 
 const appRoutes: Routes = [
-  { path: 'puzzle', component: PazzleComponent },
   { path: '', redirectTo: 'puzzle', pathMatch: 'full'},
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -13,10 +13,11 @@ const appRoutes: Routes = [
 
 @NgModule({
   imports: [
+    PuzzleModule,
     RouterModule.forRoot(
-      appRoutes,
+      appRoutes
       {
-    //    enableTracing: true, // <-- debugging purposes only
+        //  enableTracing: true, // <-- debugging purposes only
         preloadingStrategy: PreloadAllModules // SelectivePreloadingStrategy
       }
     )

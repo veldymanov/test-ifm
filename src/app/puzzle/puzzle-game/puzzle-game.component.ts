@@ -1,18 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 
 @Component({
-  selector: 'app-pazzle',
-  templateUrl: './pazzle.component.html',
-  styleUrls: ['./pazzle.component.scss']
+  selector: 'app-puzzle-game',
+  templateUrl: './puzzle-game.component.html',
+  styleUrls: ['./puzzle-game.component.scss']
 })
-export class PazzleComponent implements OnInit {
+export class PuzzleGameComponent implements OnInit {
 
   private dragablePieces: HTMLElement[] = [];
   private dropTargets: HTMLElement[] = [];
   private elemBelow: HTMLElement | undefined;
   private elemBelowPieceN: string | undefined;
 
-  constructor() {}
+  gameStartTime: number;
+  gameStarted: boolean;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
     this.getDropTargets();
@@ -121,4 +128,18 @@ export class PazzleComponent implements OnInit {
     this.dropTargets.forEach(dropTarget => dropTarget.style.backgroundColor = 'rgba(100, 100, 100, 1)');
   }
 
+  startGame() {
+    this.createDragablePieces();
+    this.gameStartTime = new Date().getTime();
+    this.gameStarted = true;
+  }
+
+  reStartGame() {
+    this.router.navigate(['./login']);
+  }
+
+  stopGame() {
+    this.gameStartTime = 0;
+    this.gameStarted = false;
+  }
 }

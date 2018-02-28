@@ -1,3 +1,8 @@
+<div class="start-btns">
+  <button (click)="startGame();" *ngIf="!gameStarted">Start Game</button>
+  <button (click)="reStartGame();" *ngIf="gameStarted">Restart Game</button>
+  <button (click)="stopGame();" *ngIf="gameStarted">Stop Game</button>
+</div>
 
 <div class="puzzle-field">
   <div class="drop-target js-drop-target" data-piece="1"></div>
