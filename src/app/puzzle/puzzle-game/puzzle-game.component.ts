@@ -190,7 +190,7 @@ export class PuzzleGameComponent implements OnInit {
   }
 
   updateUserScore(score) {
-    if (this.user.puzzleGameScore === 0 || (score < this.user.puzzleGameScore) {
+    if (this.user.puzzleGameScore === 0 || (score < this.user.puzzleGameScore)) {
       this.user$.update({puzzleGameScore: score});
     }
   }
