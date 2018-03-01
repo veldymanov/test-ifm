@@ -30,7 +30,8 @@ export class PuzzleResultsComponent implements OnInit {
 
   ngOnInit() {
     this.user$ = this.afs.doc(`users/${this.authService.currentUserId}`);
-    this.users$ = this.afs.collection('users', ref => ref.orderBy('puzzleGameScore').limit(10));
+    this.users$ = this.afs.collection('users',
+                    ref => ref.where('puzzleGameScore', '>', 0).orderBy('puzzleGameScore').limit(10));
 
     this.user$.valueChanges().subscribe( (user: User) => { this.user = user; });
     this.users$.valueChanges().subscribe( (users: User[]) => { this.users = users; });

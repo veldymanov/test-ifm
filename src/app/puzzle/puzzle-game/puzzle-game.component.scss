@@ -27,8 +27,8 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 20px auto;
-  max-width: 500px;
+  margin: 5px auto;
+  max-width: 350px;
   width: 70vw;
 }
 
@@ -37,8 +37,8 @@
   border: 1px solid #fff;
   display: inline-block;
   height: 20vw;
-  max-height: 150px;
-  max-width: 150px;
+  max-height: 100px;
+  max-width: 100px;
   overflow: hidden;
   width: 20vw;
   .dragable-box {
@@ -51,7 +51,7 @@
   background: rgba(200, 200, 200, 0.5);
   height: 250px;
   margin: 0 auto;
-  max-width: 450px;
+  max-width: 300px;
   position: relative;
   width: 61vw;
 }
@@ -73,8 +73,8 @@
   border: 1px solid #fff;
   display: inline-block;
   height: 20vw;
-  max-height: 150px;
-  max-width: 150px;
+  max-height: 100px;
+  max-width: 100px;
   overflow: hidden;
   position: absolute;
   -moz-user-select: none; /* Firefox */
@@ -87,8 +87,8 @@
   background: url(../../../assets/images/kotel.jpg) center / cover no-repeat;
   height: 60vw;
   margin: 0 auto;
-  max-height: 450px;
-  max-width: 450px;
+  max-height: 300px;
+  max-width: 300px;
   width: 60vw;
 }
 
@@ -100,64 +100,64 @@
 .dragable-box[data-piece="2"] {
   .img {
     background-position: -20vw 0;
-    @media(min-width: 750px) {
-      background-position: -150px 0;
+    @media(min-width: 500px) {
+      background-position: -100px 0;
     }
   }
 }
 .dragable-box[data-piece="3"] {
   .img {
     background-position: -40vw 0;
-    @media(min-width: 750px) {
-      background-position: -300px 0;
+    @media(min-width: 500px) {
+      background-position: -200px 0;
     }
   }
 }
 .dragable-box[data-piece="4"] {
   .img {
     background-position: 0 -20vw;
-    @media(min-width: 750px) {
-      background-position: 0 -150px;
+    @media(min-width: 500px) {
+      background-position: 0 -100px;
     }
   }
 }
 .dragable-box[data-piece="5"] {
   .img {
     background-position: -20vw -20vw;
-    @media(min-width: 750px) {
-      background-position: -150px -150px;
+    @media(min-width: 500px) {
+      background-position: -100px -100px;
     }
   }
 }
 .dragable-box[data-piece="6"] {
   .img {
     background-position: -40vw -20vw;
-    @media(min-width: 750px) {
-      background-position: -300px -150px;
+    @media(min-width: 500px) {
+      background-position: -200px -100px;
     }
   }
 }
 .dragable-box[data-piece="7"] {
   .img {
     background-position: 0 -40vw;
-    @media(min-width: 750px) {
-      background-position: 0 -300px;
+    @media(min-width: 500px) {
+      background-position: 0 -200px;
     }
   }
 }
 .dragable-box[data-piece="8"] {
   .img {
     background-position: -20vw -40vw;
-    @media(min-width: 750px) {
-      background-position: -150px -300px;
+    @media(min-width: 500px) {
+      background-position: -100px -200px;
     }
   }
 }
 .dragable-box[data-piece="9"] {
   .img {
     background-position: -40vw -40vw;
-    @media(min-width: 750px) {
-      background-position: -300px -300px;
+    @media(min-width: 500px) {
+      background-position: -200px -200px;
     }
   }
 }
