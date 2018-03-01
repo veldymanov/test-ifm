@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'puzzle',
     component: PuzzleComponent,
-  //  canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
