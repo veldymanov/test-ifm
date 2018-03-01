@@ -4,13 +4,14 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   styles: [`
     h1 {
+      margin: 10px 0;
       text-align: center;
     }
     nav {
       border-bottom: 1px solid #eee;
       display: flex;
       justify-content: center;
-      padding-bottom: 30px;
+      padding-bottom: 15px;
     }
   `],
   template: `

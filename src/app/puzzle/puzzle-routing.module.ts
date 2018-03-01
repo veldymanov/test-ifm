@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { PuzzleComponent } from './puzzle.component';
 import { PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
+import { PuzzleResultsComponent } from './puzzle-results/puzzle-results.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,11 @@ const routes: Routes = [
       {
         path: '',
         component: PuzzleGameComponent,
+      //  canActivate: [AuthGuard]
+      },
+      {
+        path: 'results',
+        component: PuzzleResultsComponent,
       //  canActivate: [AuthGuard]
       }
     ]

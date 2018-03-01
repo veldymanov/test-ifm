@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { PuzzleRoutingModule } from './puzzle-routing.module';
 import { PuzzleComponent } from './puzzle.component';
 import { PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
+import { PuzzleResultsComponent } from './puzzle-results/puzzle-results.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { PuzzleGameComponent } from './puzzle-game/puzzle-game.component';
   declarations: [
     PuzzleComponent,
     PuzzleGameComponent,
+    PuzzleResultsComponent,
 
   ]
 })

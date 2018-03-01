@@ -1,7 +1,8 @@
 <div class="start-btns">
   <button (click)="startGame();" *ngIf="!gameStarted">Start Game</button>
-  <button (click)="reStartGame();" *ngIf="gameStarted">Restart Game</button>
-  <button (click)="stopGame();" *ngIf="gameStarted">Stop Game</button>
+  <button (click)="pauseGame();" *ngIf="gameStarted">Pause Game</button>
+  <p class="timer">Timer: {{timer}} sec</p>
+  <button (click)="mixPieces();">Mix Pieces</button>
 </div>
 
 <div class="puzzle-field">
@@ -16,7 +17,8 @@
   <div class="drop-target js-drop-target" data-piece="9"></div>
 </div>
 
-<div class="pieces-container">
+<div class="pieces-container js-pieces-container">
+  <div class="game-blocker js-game-blocker"></div>
   <div class="dragable-box js-dragable-box" data-piece="1"><div class="img"></div></div>
   <div class="dragable-box js-dragable-box" data-piece="2"><div class="img"></div></div>
   <div class="dragable-box js-dragable-box" data-piece="3"><div class="img"></div></div>

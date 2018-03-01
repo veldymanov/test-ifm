@@ -13,17 +13,23 @@ export class PuzzleGameComponent implements OnInit {
   private elemBelow: HTMLElement | undefined;
   private elemBelowPieceN: string | undefined;
 
-  gameStartTime: number;
+  private timerIntervalId;
+  private gameStartTime: number;
+  private gameTime = 0;
+  private gameBlocker: HTMLElement;
   gameStarted: boolean;
+  timer = 0;
+
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.getDropTargets();
     this.createDragablePieces();
+    this.gameBlocker = <HTMLElement>document.querySelector(`.js-game-blocker`);
   }
 
   getDropTargets() {
@@ -88,6 +94,9 @@ export class PuzzleGameComponent implements OnInit {
       dragableElem.onmouseup = (e) => {
         if (dragableElem.dataset.piece === this.elemBelowPieceN) {
           this.elemBelow.appendChild(dragableElem);
+
+          const piecesLeft = document.querySelectorAll('.js-pieces-container .js-dragable-box').length;
+          if (piecesLeft === 0) { this.finishGame(); }
         }
 
         this.elemBelow = undefined;
@@ -130,16 +139,30 @@ export class PuzzleGameComponent implements OnInit {
 
   startGame() {
     this.createDragablePieces();
+    this.gameBlocker.classList.add('unblock');
     this.gameStartTime = new Date().getTime();
+    this.timerIntervalId = setInterval(() => {
+      this.timer = Math.floor((new Date().getTime() - this.gameStartTime) / 1000);
+    }, 1000);
     this.gameStarted = true;
   }
 
-  reStartGame() {
-    this.router.navigate(['./login']);
+  mixPieces() {
+    this.createDragablePieces();
   }
 
-  stopGame() {
-    this.gameStartTime = 0;
+  pauseGame() {
+    this.gameTime += new Date().getTime() - this.gameStartTime;
+    clearInterval(this.timerIntervalId);
+    this.gameBlocker.classList.remove('unblock');
     this.gameStarted = false;
+  }
+
+  finishGame() {
+    this.gameStarted = false;
+    this.gameTime += new Date().getTime() - this.gameStartTime;
+    clearInterval(this.timerIntervalId);
+    console.log('Game time', this.gameTime);
+    this.router.navigate(['./results'], { relativeTo: this.route });
   }
 }

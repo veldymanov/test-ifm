@@ -7,6 +7,7 @@
 .start-btns {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   right: 2vw;
   top: 50%;
   position: absolute;
@@ -14,6 +15,9 @@
   button {
     flex-basis: 100%;
     margin: 5px;
+  }
+  .timer {
+    font-size: 12px;
   }
 }
 
@@ -52,13 +56,16 @@
   width: 61vw;
 }
 
-.img {
-  background: url(../../../assets/images/kotel.jpg) center / cover no-repeat;
-  height: 60vw;
-  margin: 0 auto;
-  max-height: 450px;
-  max-width: 450px;
-  width: 60vw;
+.game-blocker {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: absolute;
+  z-index: 100;
+  &.unblock {
+    z-index: -1;
+  }
 }
 
 .dragable-box {
@@ -74,6 +81,15 @@
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
   width: 20vw;
+}
+
+.img {
+  background: url(../../../assets/images/kotel.jpg) center / cover no-repeat;
+  height: 60vw;
+  margin: 0 auto;
+  max-height: 450px;
+  max-width: 450px;
+  width: 60vw;
 }
 
 .dragable-box[data-piece="1"] {
