@@ -1,4 +1,13 @@
-<h2>Results table</h2>
 
+<ng-container *ngIf="user">
+  <div>Your score {{user.puzzleGameScore}} seconds</div>
+
+  <h2>Score table</h2>
+  <ul>
+    <li *ngFor="let user of users">
+      {{user.displayName}}: {{user.puzzleGameScore}} seconds.
+    </li>
+  </ul>
+</ng-container>
 
 <button (click)="startGame();">Play Again</button>

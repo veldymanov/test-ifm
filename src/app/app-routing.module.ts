@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router, PreloadAllModules  } from '@angular/router';
 
 import { PuzzleModule } from './puzzle/puzzle.module';
+import { UserModule } from './user/user.module';
 
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 
@@ -14,6 +15,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     PuzzleModule,
+    UserModule,
     RouterModule.forRoot(
       appRoutes,
       {

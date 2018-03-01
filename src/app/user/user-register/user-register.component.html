@@ -1,0 +1,81 @@
+
+<form [formGroup]="registerForm" (ngSubmit)="onSignUp()" novalidate>
+
+    <!--<div style="color: #000; font-size: 10px; padding: 20px 20%;">
+      <h5 style="font-size: 12px; margin: 0; text-align: center;">Form validation</h5>
+      <p>Form value: {{ registerForm.value | json }}</p>
+      <p>Form status: {{ registerForm.status | json }}</p>
+      <p>Email errors: {{ email.errors | json }}</p>
+    </div>-->
+
+    <div class="form-group">
+      <label for="username">Nickname:</label>
+
+      <div *ngIf="username.invalid && username.dirty" class="message is-alert">
+        <div *ngIf="username.errors.required">Nickname is required.</div>
+        <div *ngIf="username.errors.nameInDB">{{ username.value }} is already taken</div>
+      </div>
+      <div *ngIf="username.valid" class="message is-success">{{ username.value }} is free</div>
+      <div *ngIf="username.pending" class="message is-info">
+        Hold tight... Checking availability of {{ username.value }}
+      </div>
+
+      <input class="form-control" id="username" type="text"
+          placeholder="Enter your nickname"
+          formControlName="userName" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+
+      <div *ngIf="email.invalid && email.dirty" class="message is-alert">
+        <div *ngIf="email.errors.required">Email is required.</div>
+        <div *ngIf="!email.errors.required && email.errors.email">{{ email.value }} is not an email</div>
+        <div *ngIf="email.errors.emailNotInDB">{{ email.value }} is already taken!</div>
+      </div>
+      <!--div *ngIf="email.valid" class="message is-success">{{ email.value }} is free.</div-->
+      <div *ngIf="email.pending" class="message is-info">
+        Hold tight... Checking availability of {{ email.value }}
+      </div>
+
+      <input class="form-control" id="email" type="email"
+          placeholder="Enter your e-mail"
+          formControlName="email" />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+
+      <div *ngIf="pass.invalid && (pass.dirty || pass.touched)" class="message is-alert">
+        <div *ngIf="pass.errors.required">Password is required.</div>
+        <div *ngIf="pass.errors.minlength">Password must be at least 6 characters long.</div>
+      </div>
+
+      <input class="form-control" id="password" type="password"
+          placeholder="Enter password" autocomplete="new-password"
+          formControlName="password" />
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPass">Confirm password:</label>
+
+      <div *ngIf="confPass.invalid" class="message is-alert">
+        <div *ngIf="confPass.errors.confirmPassword">Passwords are not equal!</div>
+      </div>
+
+      <input class="form-control" id="confirmPass" type="password"
+          placeholder="Confirm password"
+          formControlName="confirmPassword" />
+    </div>
+
+    <div class="form-group btn-submit">
+      <button class="btn btn-success" type="submit"
+          [disabled]="registerForm.invalid">Register</button>
+    </div>
+</form>
+
+<div class="form-group">
+  <h4 class="text-primary" (click)="toLoginWithEmailForm()">
+    Already have an Account! >> Continue With Log In
+  </h4>
+</div>

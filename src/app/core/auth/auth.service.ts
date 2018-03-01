@@ -13,6 +13,7 @@ import 'rxjs/add/operator/take';
 export interface User {
   uid: string;
   email: string;
+  puzzleGameScore: number;
   photoURL?: string;
   displayName?: string;
   favouriteColor?: string;
@@ -130,7 +131,8 @@ export class AuthService {
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL
+      photoURL: user.photoURL,
+      puzzleGameScore: 0
     };
 
     userRef.valueChanges().take(1)

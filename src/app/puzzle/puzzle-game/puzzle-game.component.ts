@@ -1,5 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+  AngularFirestoreCollection
+} from 'angularfire2/firestore';
+
+import { AuthService, User } from '../../core/auth/auth.service';
+
 
 @Component({
   selector: 'app-puzzle-game',
@@ -7,6 +16,8 @@ import { ActivatedRoute, Router, ParamMap } from '@angular/router';
   styleUrls: ['./puzzle-game.component.scss']
 })
 export class PuzzleGameComponent implements OnInit {
+
+  private user$: AngularFirestoreDocument<User>;
 
   private dragablePieces: HTMLElement[] = [];
   private dropTargets: HTMLElement[] = [];
@@ -23,13 +34,16 @@ export class PuzzleGameComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private afs: AngularFirestore,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
     this.getDropTargets();
     this.createDragablePieces();
     this.gameBlocker = <HTMLElement>document.querySelector(`.js-game-blocker`);
+    this.user$ = this.afs.doc(`users/${this.authService.currentUserId}`);
   }
 
   getDropTargets() {
@@ -162,7 +176,12 @@ export class PuzzleGameComponent implements OnInit {
     this.gameStarted = false;
     this.gameTime += new Date().getTime() - this.gameStartTime;
     clearInterval(this.timerIntervalId);
-    console.log('Game time', this.gameTime);
+    this.updateUserScore( Math.floor(this.gameTime / 1000) );
+
     this.router.navigate(['./results'], { relativeTo: this.route });
+  }
+
+  updateUserScore(score) {
+    this.user$.update({puzzleGameScore: score});
   }
 }

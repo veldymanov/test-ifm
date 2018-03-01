@@ -6,23 +6,34 @@ import {
   NavigationExtras
 } from '@angular/router';
 
-import { Observable } from 'rxjs/Observable';
-
 import { AuthService } from './auth.service';
+
+import { Observable } from 'rxjs/Observable';
+import { map, take } from 'rxjs/operators';
+import 'rxjs/add/operator/do';
 
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router) {}
 
-  canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      if ( !this.authService.isUserEmailLoggedIn ) {
-        console.log('access denied');
-        this.router.navigate(['/login']);
-      }
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+      if ( this.authService.isUserEmailLoggedIn ) { return true; }
 
-      return this.authService.isUserEmailLoggedIn;
+      return this.authService.authState$
+        .take(1)
+        .map(user => !!user)
+        .do(loggedIn => {
+          if (!loggedIn) {
+            console.log('access denied');
+            this.router.navigate(['/login']);
+          }
+        });
     }
 
   canActivateChild( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean | boolean {
