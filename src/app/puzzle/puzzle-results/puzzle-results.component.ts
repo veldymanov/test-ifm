@@ -8,6 +8,7 @@ import {
 } from 'angularfire2/firestore';
 
 import { AuthService, User } from '../../core/auth/auth.service';
+import { PuzzleService } from '../../core/puzzle/puzzle.service';
 
 @Component({
   selector: 'app-puzzle-results',
@@ -16,25 +17,24 @@ import { AuthService, User } from '../../core/auth/auth.service';
 })
 export class PuzzleResultsComponent implements OnInit {
 
-  private user$: AngularFirestoreDocument<User>;
   private users$: AngularFirestoreCollection<User>;
-  user: User;
   users: User[];
+  userPuzzleScore: number;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private afs: AngularFirestore,
-    private authService: AuthService
+    private authService: AuthService,
+    private puzzleService: PuzzleService
   ) {}
 
   ngOnInit() {
-    this.user$ = this.afs.doc(`users/${this.authService.currentUserId}`);
     this.users$ = this.afs.collection('users',
                     ref => ref.where('puzzleGameScore', '>', 0).orderBy('puzzleGameScore').limit(10));
-
-    this.user$.valueChanges().subscribe( (user: User) => { this.user = user; });
     this.users$.valueChanges().subscribe( (users: User[]) => { this.users = users; });
+
+    this.userPuzzleScore = this.puzzleService.userScore;
   }
 
   startGame() {

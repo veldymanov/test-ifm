@@ -8,6 +8,7 @@ import {
 } from 'angularfire2/firestore';
 
 import { AuthService, User } from '../../core/auth/auth.service';
+import { PuzzleService } from '../../core/puzzle/puzzle.service';
 
 
 @Component({
@@ -18,6 +19,7 @@ import { AuthService, User } from '../../core/auth/auth.service';
 export class PuzzleGameComponent implements OnInit {
 
   private user$: AngularFirestoreDocument<User>;
+  private user: User;
 
   private dragablePieces: HTMLElement[] = [];
   private dropTargets: HTMLElement[] = [];
@@ -36,7 +38,8 @@ export class PuzzleGameComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private afs: AngularFirestore,
-    private authService: AuthService
+    private authService: AuthService,
+    private puzzleService: PuzzleService
   ) {}
 
   ngOnInit() {
@@ -44,6 +47,7 @@ export class PuzzleGameComponent implements OnInit {
     this.createDragablePieces();
     this.gameBlocker = <HTMLElement>document.querySelector(`.js-game-blocker`);
     this.user$ = this.afs.doc(`users/${this.authService.currentUserId}`);
+    this.user$.valueChanges().subscribe((user) => this.user = user);
   }
 
   getDropTargets() {
@@ -176,12 +180,18 @@ export class PuzzleGameComponent implements OnInit {
     this.gameStarted = false;
     this.gameTime += new Date().getTime() - this.gameStartTime;
     clearInterval(this.timerIntervalId);
-    this.updateUserScore( Math.floor(this.gameTime / 1000) );
+
+    const score = Math.round(this.gameTime / 1000);
+
+    this.puzzleService.userScore = score;
+    this.updateUserScore(score);
 
     this.router.navigate(['./results'], { relativeTo: this.route });
   }
 
   updateUserScore(score) {
-    this.user$.update({puzzleGameScore: score});
+    if (this.user.puzzleGameScore === 0 || (score < this.user.puzzleGameScore) {
+      this.user$.update({puzzleGameScore: score});
+    }
   }
 }

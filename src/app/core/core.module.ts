@@ -8,6 +8,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthService } from './auth/auth.service';
 import { CustomValidatorsService } from './validators/custom-validators.service';
+import { PuzzleService } from './puzzle/puzzle.service';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
@@ -28,6 +29,7 @@ import { environment } from '../../environments/environment';
     AuthGuard,
     AuthService,
     CustomValidatorsService,
+    PuzzleService
   ],
   exports: [
     PageNotFoundComponent

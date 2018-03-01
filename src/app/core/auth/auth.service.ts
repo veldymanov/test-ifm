@@ -28,7 +28,7 @@ export interface AuthError {
 @Injectable()
 export class AuthService {
 
-  user$: Observable<User>;
+//  user$: Observable<User>;
   authState$: Observable<any>;
   authState: firebase.User = null;
   isNewUser$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
